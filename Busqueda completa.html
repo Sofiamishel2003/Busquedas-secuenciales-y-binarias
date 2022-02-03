@@ -1,0 +1,157 @@
+<DOCTYPE! html>
+<html>
+    <head>
+        <title>BUSQUEDA</title>
+        <script>
+// FUNCIÓN DE GENERAR LISTA PARA BINARIO ----------------------------------------------------------
+            function generar1()
+		{
+		var cant= document.getElementById("generar").value;
+		var canti= parseInt(cant);
+		//v = parseInt(generar.value)
+		if(isNaN(canti)||canti<=0)
+		{
+			alert("CANTIDAD INGRESADA INVALIDA" );
+		}
+		else
+		{
+			lista =new Array(canti);
+			var acu=0
+			for(var i=0; i<canti; i++)
+				{
+				n =Math.trunc(Math.random()*(10+1))
+				acu=acu+n;
+				lista[i]=acu;
+				}
+			document.getElementById("V").innerHTML=lista;
+		}
+        }
+// FUNCIÓN DE BUSQUEDA BINARIA-----------------------------------------------------------------------
+            function busquedabi()
+		{
+		
+			v = parseInt(busqueda.value)
+			if(isNaN(v)||v<=0)
+			{
+				alert("CANTIDAD INGRESADA INVALIDA" );
+			}
+			else
+			{
+				var min=0;
+				var max=lista.length-1;
+                console.log(lista, min, max)
+                var bandera=false;
+                var vueltas=1;
+				while(min<=max)
+					{
+						var medio= Math.trunc((min+max)/2);
+						console.log(min,max,medio)
+						if(lista[medio]==v)
+							{
+                                bandera=true;
+								alert("Si esta el valor "+v+ " en la vuelta numero "+ vueltas+" en la posición "+ medio );
+								break;
+							}
+						else 
+						{
+							if (v>lista[medio])
+								{
+                                    min=medio+1;
+                                    vueltas+=1
+								}
+							else
+								{
+                                    max=medio-1;
+                                    vueltas-=1
+								}
+						}
+					}
+                }
+                
+                if (bandera==false)
+                    {
+                        alert("No esta el valor" );
+                    }
+			}
+// FUNCIÓN DE GENERAR VECTOR SECUENCIAL-----------------------------------------------------------------
+		function generar2()
+		{
+		var cant= document.getElementById("generar").value;
+		var canti= parseInt(cant);
+		//v = parseInt(generar.value)
+		if(isNaN(canti))
+		{
+			alert("CANTIDAD INGRESADA INVALIDA" );
+		}
+		else
+		{
+			lista =new Array(canti);
+			for(var i=0; i<canti; i++)
+				{
+				n =Math.trunc(Math.random()*(100+1))
+				lista[i]=n;
+				}
+			document.getElementById("V").innerHTML=lista;
+		}
+        }
+// FUNCIÓN DE BUSQUEDA SECUENCIAL-----------------------------------------------------------------------
+		function busquedase()
+		{
+		
+			v = parseInt(busqueda.value)
+			if(isNaN(v))
+			{
+				alert("CANTIDAD INGRESADA INVALIDA" );
+			}
+			else
+			{
+                var bandera=false;
+				var largo=lista.length
+                for(var i=0; i<largo; i++)
+				{
+                    if (lista[i]==v)
+                    {
+                        alert("Numero "+v+ " fue encontrado en la vuelta "+i+" en la posición "+ i);
+                        bandera=true;
+                    }
+                }
+                
+                if (bandera==false)
+                    {
+                        alert("No esta el valor" );
+                    }
+            }					
+		}
+        </script>
+
+    </head>
+    <body style="background-color:beige;"> 
+	<h2></h1>BUSQUEDA<h2>
+	<hr>
+	</h1>Cantidad de numeros <h1>
+	<input type="text" id="generar">
+	<input type="button" value="Generar binario" onclick="generar1()">
+	<input type="button" value="Generar secuencial" onclick="generar2()">
+	<br>
+	</h1>Numero a buscar <h1>
+	<input type="text" id="busqueda">
+	<input type="button" value="Busqueda binaria" onclick="busquedabi()">
+	<input type="button" value="Busqueda secuencial" onclick="busquedase()">
+	<br><br>
+	</h1>Numeros generados <h1>
+	<textarea name="comentarios" rows="10" cols="40" id="V"></textarea>
+    </body>
+</html>
+
+
+<!--
+#DOCUMENTACIÓN INTERNA
+#Programador:Sofia  Velásquez
+#Datos del programador: Sofiamishel2003@gmail.com
+#Fin: Refrescar los conocimientos de programación del año anterior
+#Lenguaje: html y javascript
+#Net Framewor: 4.5
+#Recursos: visual code
+#Descripción: Desarrollar un programa que genere un vector en orden secuencial con numeros random y hacer una busqueda secuencial del numero que ingrese el usuario
+#Ultima modificación 13/01/2021
+-->
